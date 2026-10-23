@@ -10,9 +10,18 @@ repository = "https://github.com/dylanwh/serde_perl"
 edition = "2021"
 
 [dependencies]
-ariadne = "0.4.1"
+beef = "0.5.2"
+bon = "3.10.3"
 itoa = "1.0.11"
-nom = "7.1.3"
+memchr = "2.8.3"
 ryu = "1.0.18"
 serde = { version = "1.0.203", features = ["derive"] }
 thiserror = "1.0.61"
+winnow = "1.0.4"
+
+[dev-dependencies]
+criterion = "0.8.2"
+
+[[bench]]
+name = "parse"
+harness = false

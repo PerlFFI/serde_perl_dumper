@@ -2,19 +2,14 @@ use serde::{de, ser};
 
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
-    // One or more variants that can be created by data structures through the
-    // `ser::Error` and `de::Error` traits. For example the Serialize impl for
-    // Mutex<T> might return an error because the mutex is poisoned, or the
-    // Deserialize impl for a struct may return an error because a required
-    // field is missing.
+    /// Raised by data structures through serde's `ser::Error` and
+    /// `de::Error`, e.g. a missing field or an out-of-range number.
     #[error("{0}")]
     Message(String),
 
+    /// The input isn't valid; the text includes the line and column.
     #[error("parse error: {0}")]
-    Nom(String),
-    // Zero or more variants that can be created directly by the Serializer and
-    // Deserializer without going through `ser::Error` and `de::Error`. These
-    // are specific to the format, in this case JSON.
+    Parse(String),
 }
 
 impl ser::Error for Error {
